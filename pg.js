@@ -72,6 +72,12 @@ function submit() {
         messages: messages
     };
 
+    const box = document.getElementById('result');
+    const feaching = document.createElement('p');
+    feaching.textContent = 'Feaching...';
+    feaching.id = 'feaching';
+    box.appendChild(feaching);
+
     fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -84,6 +90,10 @@ function submit() {
     .then(data => {
         console.log(data)
         const box = document.getElementById('result');
+        const feaching = document.getElementById('feaching');
+        if (feaching) {
+            box.removeChild(feaching);
+        }
         const text = document.createElement('p');
         text.textContent = data.choices[0].message.content;
         box.appendChild(text);
