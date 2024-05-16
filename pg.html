@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+<head>
+    <title>PG</title>
+    <link rel="script" type="text/javascript" href="pg.js">
+</head>
+<body>
+    <h1>PG</h1>
+    <div style="margin: 5%;">
+        <button id="add_sys" onclick="addInput('System')" style="padding: 1%;">system</button>
+        <button id="add_usr" onclick="addInput('User')" style="padding: 1%;">user</button>
+        <button id="add_asi" onclick="addInput('Assistant')" style="padding: 1%;">assistant</button>
+        <div id="pg" style="display: flex; flex-direction: column;"></div>
+
+        <button id="save" onclick="save()" style="padding: 1%;">save</button>
+    </div>
+    <input id="key_input" type="text" placeholder="key" style="width: 100%; padding: 1%;">
+    <button onclick="submit()" style="width: 20%; padding: 1%;">submit</button>
+
+    <div id="result" style="margin: 5%;">
+        <h4>Result</h4>
+    </div>
+    <script src="pg.js"></script>
+</html>
+
