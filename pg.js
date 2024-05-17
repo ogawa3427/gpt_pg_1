@@ -56,7 +56,7 @@ function submit() {
         },
         {
             "role": "user",
-            "content": "こんにちは"
+            "content": "スマ創について教えて"
         },
         {
             "role": "assistant",
