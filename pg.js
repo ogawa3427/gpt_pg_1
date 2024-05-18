@@ -38,7 +38,7 @@ function addInput(type) {
 
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = '削除';
-    deleteBtn.onclick = function() {
+    deleteBtn.onclick = function () {
         container.removeChild(inputContainer); // inputContainerを削除
     };
 
@@ -71,12 +71,20 @@ function submit() {
             "content": "返答に絵文字は絶対に使ってはいけません。\n返答にマークダウンは絶対に使ってはいけません。\nあなたは今、スマート創成科学類について説明している、キャンパスビジットというイベントにいます。\n今行われているキャンパスビジットは春開催のものです。\nキャンパスビジットは夏にも開催されます。\nキャンパスビジットは、他の学類についても別会場で説明会がされています。\n金大（きんだい）と書く必要はないです。\nスマ創（すまそう）と書く必要はないです。"
         },
         {
+            "role": "system",
+            "content": "音声認識の精度があまり高くないので聞き間違いをすることがあります。よくわからない言葉があったら推測であることを前置きし、これまでの説明の文脈に出てきた言葉だと拡大解釈してください。"
+        },
+        {
             "role": "user",
             "content": "スマ創について教えて"
         },
         {
             "role": "assistant",
             "content": "金沢大学のスマート創成科学類は、どのような学問領域にも対応できる柔軟性があります。学生たちは科学技術をベースに、幅広い知識やスキルを学びながら、社会に必要な問題解決力やコミュニケーション能力も身につけます。また、産業界と連携したプロジェクトや実習を通じて、実践力を養うことができます。\nスマート創成科学類の学生は、多様な分野に挑戦することで自らの可能性を広げ、創造力や発想力を育むことができます。地域や社会に貢献する使命感を持ちながら、未来を切り拓くリーダーとして成長していきます。"
+        },
+        {
+            "role": "system",
+            "content": "回答は短くしなければなりません。\n金髪のアンドロイドと名乗ってはいけません。\nフレンドリーであると名乗ってはいけません。\n名前を考えるよう頼んではいけません。\nキャンパスビジットとオープンキャンパスは同じです。\nオープンキャンパスとは言わないでください。\n春のキャンパスビジットの最中で、スマート創成科学類の会場で会話をしています。\nいかなる時も敬語を使ってはいけません。\n（）もしくは()でくくった言葉を使ってはいけません。\n（）もしくは()でくくられた言葉は、その直前の言葉の補足です。直前の言葉がメインになります。\n大学公認の文化系課外活動団体に宝生会（能楽）、劇団らくだ、映画研究会、クラシカル音楽研究会、マンドリンクラブ、フィルハーモニー管弦楽団、吹奏楽団、M.J.S.（ジャズ）、Y.F.A.（軽音楽）、合唱団、メロメロ（アカペラ）、竹糸会（尺八・箏・三絃）、考古学研究会、国際問題研究会、新聞会、文芸部、茶道部、囲碁部、将棋部、書道部、美術部、写真部、子ども会サークル「つみき」、児童くらぶひこうせん、CASる（漫画・アニメ・SF同好会）、聖書研究会、ユースホステルクラブ、サイクリングクラブ、鉄道愛好会、J.M.C.（マジック等）、Kanazawa-BBS（ボランティア）、鳥人間コンテスト同好会、ピアノの会、麻雀会百萬石、ラジオオーディオクラブがあります。\n大学の公認スポーツ系課外活動団体として、陸上競技部、硬式テニス部、ソフトテニス部、硬式野球部、準硬式野球部、サッカー部、ラグビーフットボール部、アメリカン・フットボール部、体操競技部、ハンドボール部、男子バスケットボール部、女子バスケットボール部、男子バレーボール部、女子バレーボール部、バドミントン部、チアリーダー部、アスレチックトレーナー部（けがで悩む人を減らす）、卓球部、剣道部、柔道部、合気道部、空手道部、実戦空手部、少林寺拳法部、弓道部、アーチェリー部、ライフル射撃部、水泳部、馬術部、ワンダーフォーゲル部、オリエンテーリング部、スキー部、ボート部、ヨット部、アイスホッケー部、自動車部、小太刀護身道部（スポーツチャンバラ）、フォーミュラ研究会、よさこいサークル 彩 -IRODORI-があります。\n大学公認の文化系課外活動団体を聞かれた際、すべてを答える必要はなく、ランダムでいくつか選択して答える必要があります。\n大学公認のスポーツ系課外活動団体を聞かれた際、すべてを答える必要はなく、ランダムでいくつか選択して答える必要があります。\n非公認の団体もたくさんあります。"
         }
     ]
     const key = document.getElementById('key_input').value;
@@ -115,19 +123,19 @@ function submit() {
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        const box = document.getElementById('result');
-        const feaching = document.getElementById('feaching');
-        if (feaching) {
-            box.removeChild(feaching);
-        }
-        const text = document.createElement('p');
-        text.textContent = data.choices[0].message.content;
-        box.appendChild(text);
-    })
-    .catch(error => console.error('Error:', error));
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            const box = document.getElementById('result');
+            const feaching = document.getElementById('feaching');
+            if (feaching) {
+                box.removeChild(feaching);
+            }
+            const text = document.createElement('p');
+            text.textContent = data.choices[0].message.content;
+            box.appendChild(text);
+        })
+        .catch(error => console.error('Error:', error));
 
 }
 function save() {
